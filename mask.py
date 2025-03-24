@@ -92,9 +92,9 @@ class MaskPreview(SaveImage):
     FUNCTION = "execute"
     CATEGORY = "essentials/mask"
 
-    def execute(self, mask, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None, job_id=None, isPrivate=True):
+    def execute(self, mask, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None, job_id=None, isPrivate=True, isPreview=True):
         preview = mask.reshape((-1, 1, mask.shape[-2], mask.shape[-1])).movedim(1, -1).expand(-1, -1, -1, 3)
-        return self.save_images(preview, filename_prefix, prompt, extra_pnginfo, job_id, isPrivate)
+        return self.save_images(preview, filename_prefix, prompt, extra_pnginfo, job_id, isPrivate, isPreview)
 
 class MaskBatch:
     @classmethod
